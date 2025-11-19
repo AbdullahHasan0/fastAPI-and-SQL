@@ -11,7 +11,7 @@ class DatabaseConector:
         self.DB_URL = DB_URL
         self.engine = create_engine(self.DB_URL, connect_args= {'check_same_thread': False})
         self.SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=self.engine)
-        Base = declarative_base()
+        # Base = declarative_base()
         Base.metadata.create_all(bind=self.engine)
 
 

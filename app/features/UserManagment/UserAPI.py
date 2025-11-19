@@ -78,3 +78,4 @@ def delete_user(user_id: int, db: Session = Depends(db_connector.get_db)):
 def get_all_users(db:Session = Depends(db_connector.get_db)):
     users = db.query(User).all()
     return users
+

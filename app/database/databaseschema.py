@@ -9,3 +9,12 @@ class User(Base):
     phno = Column(String(15), nullable=False, unique=True)
     email = Column(String(100), nullable=False, unique=True)
     role = Column(String(20), nullable=False)
+    age = Column(Integer, nullable=False)
+    password = Column(String(255), nullable=False, default='')
+
+class Product(Base):
+    __tablename__ = "products"
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String(100), nullable=False)
+    description = Column(String(255), nullable=True)
+    price = Column(Integer, nullable=False)
