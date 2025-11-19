@@ -1,12 +1,8 @@
-from pydantic import BaseModel, Field
 
-from fastapi import FastAPI, HTTPException, Depends
-from sqlalchemy import create_engine, Column, Integer, String
+from sqlalchemy import create_engine
 from sqlalchemy.orm import declarative_base
-from sqlalchemy.orm import sessionmaker, Session
+from sqlalchemy.orm import sessionmaker
 
-from pydantic import BaseModel, Field
-from typing import Optional, List
 
 from app.features.UserManagment.databaseschema import Base
 

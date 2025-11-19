@@ -1,13 +1,8 @@
 
-from pydantic import BaseModel, Field
+from fastapi import HTTPException, Depends, APIRouter
+from sqlalchemy.orm import Session
 
-from fastapi import FastAPI, HTTPException, Depends, APIRouter
-from sqlalchemy import create_engine, Column, Integer, String
-from sqlalchemy.orm import declarative_base
-from sqlalchemy.orm import sessionmaker, Session
-
-from pydantic import BaseModel, Field
-from typing import Optional, List
+from typing import List
 
 from app.features.UserManagment.User import DatabaseConector
 
