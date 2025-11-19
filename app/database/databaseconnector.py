@@ -1,9 +1,6 @@
 
 from sqlalchemy import create_engine
-from sqlalchemy.orm import declarative_base
 from sqlalchemy.orm import sessionmaker
-
-
 from app.database.databaseschema import Base
 
 class DatabaseConector:
@@ -11,7 +8,6 @@ class DatabaseConector:
         self.DB_URL = DB_URL
         self.engine = create_engine(self.DB_URL, connect_args= {'check_same_thread': False})
         self.SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=self.engine)
-        # Base = declarative_base()
         Base.metadata.create_all(bind=self.engine)
 
 
