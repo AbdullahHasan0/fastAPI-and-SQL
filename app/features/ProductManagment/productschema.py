@@ -14,4 +14,4 @@ class ProductResponse(BaseModel):
     # quantity: int = Field(..., description="The available quantity of the product")
 
     class Config:
-        orm_mode = True
+        from_attributes = True
