@@ -4,10 +4,10 @@ from sqlalchemy.orm import Session
 
 from typing import List
 
-from app.features.UserManagment.User import DatabaseConector
+from app.database.databaseconnector import DatabaseConector
 
 from app.features.UserManagment.Userschema import UserCreate as UCreate , UserResponse as UResp
-from app.features.UserManagment.databaseschema import User
+from app.database.databaseschema import User
 
 
 database_url = "sqlite:///users.db"
