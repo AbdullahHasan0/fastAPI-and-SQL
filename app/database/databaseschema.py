@@ -18,3 +18,4 @@ class Product(Base):
     name = Column(String(100), nullable=False)
     description = Column(String(255), nullable=True)
     price = Column(Integer, nullable=False)
+    quantity = Column(Integer, nullable=False)
