@@ -1,17 +1,18 @@
 # FastAPI SQLAlchemy Learning Project
 
-This repository contains the work I did while learning how to connect a database with FastAPI using SQLAlchemy and how to handle database migrations using Alembic. It includes basic CRUD operations, database models, Pydantic schemas, and a simple project structure to understand how backend systems work.
+This repository contains the work I did while learning how to connect a database with FastAPI using SQLAlchemy and how to handle database migrations using Alembic. It includes CRUD operations, database models, Pydantic schemas, product management, and a simple project structure to understand how backend systems work.
 
 ## What This Project Covers
 
 - Setting up SQLAlchemy with FastAPI
 - Configuring the database engine and session
 - Creating SQLAlchemy models (User, Product)
+- Adding a quantity field to the Product model
 - Creating Pydantic request and response models
-- Implementing CRUD APIs using FastAPI
-- Learning how Alembic handles database migrations
-- Understanding schema versioning and upgrade/downgrade flow
-- Practicing real backend development workflow
+- Implementing CRUD APIs for Users and Products
+- Using Alembic to manage database migrations
+- Understanding upgrade and downgrade migrations
+- Maintaining a clean backend project structure
 
 ## Folder Structure (Simple Overview)
 
@@ -23,6 +24,9 @@ app/
     UserManagment/
       Userschema.py
       UserRoutes.py
+    ProductManagment/
+      Productschema.py
+      ProductRoutes.py
   alembic/
     versions/
 main.py
@@ -30,38 +34,42 @@ main.py
 ## How to Run the Project
 
 1. Install dependencies:
-   pip install -r requirements.txt
-
-2. Initialize Alembic (only if running for the first time):
+  ```bash
+  pip install -r requirements.txt
+```
+2. Initialize Alembic (only for first-time setup):
+   ```bash
    alembic init alembic
-
+```
 3. Apply migrations:
+```bash
    alembic upgrade head
-
+```
 4. Start the FastAPI server:
+   ```bash
    uvicorn main:app --reload
+```
 
-5. Open API documentation in the browser:
+5. Open API documentation:
+```bash
    http://127.0.0.1:8000/docs
+```
 
 ## CRUD Endpoints Included
 
+User Management:
 - Create a user
-- Get a user by ID
+- Get user by ID
 - Get all users
-- Update a user
-- Delete a user
+- Update user
+- Delete user
 
-Each endpoint uses SQLAlchemy for database operations and Pydantic for request/response validation.
+Product Management:
+- Create a product
+- Get product by ID
+- Get all products
+- Includes quantity field in the Product table
 
 ## Purpose of This Repository
 
-This repository is mainly for learning purposes. It helped me understand:
-
-- How FastAPI handles incoming requests
-- How SQLAlchemy interacts with the database
-- How Alembic tracks and applies schema changes
-- How to maintain a clean backend project structure
-
-It also helps me present my learning progress clearly to my team lead.
-
+This project helped me understand how FastAPI interacts with SQLAlchemy, how database sessions work, how to structure backend modules, and how to manage schema changes using Alembic migrations. It also serves as a reference for building clean and scalable backend APIs.
