@@ -22,18 +22,18 @@ router = APIRouter()
 
 ## API Endpoints
 @router.get("/")
-def root():
+async def root():
     return {"message": "Welcome to the User Management API"}
 
 @router.get("/users/{user_id}", response_model=UResp)
-def get_users(user_id: int, db: Session = Depends(db_connector.get_db)):
+async def get_users(user_id: int, db: Session = Depends(db_connector.get_db)):
     user = db.query(User).filter(User.id == user_id).first()
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
     return user
 
 @router.post("/users/", response_model=UResp)
-def create_user(user: UCreate, db : Session = Depends(db_connector.get_db)):
+async def create_user(user: UCreate, db : Session = Depends(db_connector.get_db)):
     if db.query(User).filter(User.email == user.email).first():
         raise HTTPException(status_code=400, detail="Email already registered")
     if db.query(User).filter(User.phno == user.phno).first():
@@ -47,7 +47,7 @@ def create_user(user: UCreate, db : Session = Depends(db_connector.get_db)):
     return new_user
 
 @router.put('/users/{user_id}', response_model=UResp)
-def update_user(user_id: int, user: UCreate, db: Session = Depends(db_connector.get_db)):
+async def update_user(user_id: int, user: UCreate, db: Session = Depends(db_connector.get_db)):
     db_user = db.query(User).filter(User.id == user_id).first()
     if not db_user:
         raise HTTPException(status_code=404, detail="User not found")
@@ -60,7 +60,7 @@ def update_user(user_id: int, user: UCreate, db: Session = Depends(db_connector.
     return db_user
 
 @router.delete('/users/{user_id}')
-def delete_user(user_id: int, db: Session = Depends(db_connector.get_db)):
+async def delete_user(user_id: int, db: Session = Depends(db_connector.get_db)):
     db_user = db.query(User).filter(User.id == user_id).first()
     if not db_user:
         raise HTTPException(status_code=404, detail="User not found")
@@ -75,7 +75,7 @@ def delete_user(user_id: int, db: Session = Depends(db_connector.get_db)):
     # return {"message": f"User has been deleted."}
 
 @router.get('/users/', response_model=List[UResp])
-def get_all_users(db:Session = Depends(db_connector.get_db)):
+async def get_all_users(db:Session = Depends(db_connector.get_db)):
     users = db.query(User).all()
     return users
 
