@@ -4,7 +4,7 @@ from app.database.databaseconnector import DatabaseConector
 from fastapi import HTTPException, APIRouter, Depends
 from typing import List
 
-DB_URL = "sqlite:///.user.db"
+DB_URL = "sqlite:///users.db"
 connector = DatabaseConector(DB_URL= DB_URL)
 
 get_db = connector.get_db
@@ -29,9 +29,14 @@ def get_order(order_id: int, db=Depends(get_db)):
         raise HTTPException(status_code=404, detail="Order not found")
     return db_order
 
-@router.get("/orders/{user_id}", response_model=List[OResp])
+@router.get("/orders/users/{user_id}", response_model=List[OResp])
 def get_orders_by_user(user_id: int, db = Depends(get_db)):
     db_orders = db.query(Order).filter(Order.user_id == user_id).all()
     if not db_orders:
         raise HTTPException(status_code=404, detail="No orders found for this user")
+    return db_orders
+
+@router.get("/orders/", response_model=List[OResp])
+def get_all_orders(db=Depends(get_db)):
+    db_orders = db.query(Order).all()
     return db_orders
