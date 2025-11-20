@@ -10,7 +10,7 @@ class User(Base):
     email = Column(String(100), nullable=False, unique=True)
     role = Column(String(20), nullable=False)
     age = Column(Integer, nullable=False)
-    password = Column(String(255), nullable=False, default='')
+    password = Column(String(255), nullable=False, default='abcd@1234')
 
 class Product(Base):
     __tablename__ = "products"
@@ -18,4 +18,4 @@ class Product(Base):
     name = Column(String(100), nullable=False)
     description = Column(String(255), nullable=True)
     price = Column(Integer, nullable=False)
-    quantity = Column(Integer, nullable=False)
+    quantity = Column(Integer, nullable=False, server_default='0')
