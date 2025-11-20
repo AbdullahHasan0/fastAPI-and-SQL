@@ -16,6 +16,8 @@ class User(Base):
     age = Column(Integer, nullable=False)
     password = Column(String(255), nullable=False, default='abcd@1234')
 
+    orders = relationship("Order", back_populates="users")
+
 class Product(Base):
     __tablename__ = "products"
     id = Column(Integer, primary_key=True, index=True)
@@ -34,5 +36,5 @@ class Order(Base):
     created_at = Column(DateTime(), nullable=False, default=lambda: datetime.now(timezone.utc))
     updated_at = Column(DateTime(timezone=True),server_default=func.now(),server_onupdate=func.now(),nullable=False)
 
-    user = relationship("User", back_populates="orders")
+    users = relationship("User", back_populates="orders")
 

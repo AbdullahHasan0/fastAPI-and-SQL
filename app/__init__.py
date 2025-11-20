@@ -18,7 +18,6 @@ def create_app():
     from app.features.Home.homeAPI import router as Home
     app.include_router(
         Home, 
-        prefix=currentVersion,
         tags=["Home Route"]
     )
 
@@ -34,5 +33,12 @@ def create_app():
         Product, 
         prefix=currentVersion,
         tags=["Product Management Route"]
+    )
+
+    from app.features.OrderManagment.orderAPI import router as Order
+    app.include_router(
+        Order, 
+        prefix=currentVersion,
+        tags=["Order Management Route"]
     )
     return app

@@ -1,19 +1,18 @@
-from database.databaseschema import Order
-from features.OrderManagment.orderschema import OrderCreate as OCreate, OrderResponse as OResp
+from app.database.databaseschema import Order
+from app.features.OrderManagment.orderschema import OrderCreate as OCreate, OrderResponse as OResp
 from app.database.databaseconnector import DatabaseConector
 from fastapi import HTTPException, APIRouter, Depends
-from app.database.databaseconnector import get_db
 from typing import List
 
 DB_URL = "sqlite:///.user.db"
 connector = DatabaseConector(DB_URL= DB_URL)
 
-get_db = get_db()
+get_db = connector.get_db
 router = APIRouter()
 
 @router.post("/orders/", response_model=OResp)
 def create_order(order: OCreate, db=Depends(get_db)):
-    db_order = Order(order.model_dump())
+    db_order = Order(**order.model_dump())
     db.add(db_order)
     try:
         db.commit()
