@@ -15,6 +15,13 @@ def create_app():
     currentVersion = "/api/v1"
 
     # Register Routes
+    from app.features.Home.homeAPI import router as Home
+    app.include_router(
+        Home, 
+        prefix=currentVersion,
+        tags=["Home Route"]
+    )
+
     from app.features.UserManagment.userAPI import router as User
     app.include_router(
         User, 
