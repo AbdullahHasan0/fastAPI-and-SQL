@@ -41,4 +41,11 @@ def create_app():
         prefix=currentVersion,
         tags=["Order Management Route"]
     )
+
+    from app.features.OrderItemManagment.orderitemAPI import router as OrderItem
+    app.include_router(
+        OrderItem, 
+        prefix=currentVersion,
+        tags=["Order Item Management Route"]
+    )
     return app
