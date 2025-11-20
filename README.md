@@ -39,20 +39,20 @@ main.py
 ```
 2. Initialize Alembic (only for first-time setup):
    ```bash
-   alembic init alembic
+  alembic init alembic
 ```
 3. Apply migrations:
 ```bash
-   alembic upgrade head
+  alembic upgrade head
 ```
 4. Start the FastAPI server:
    ```bash
-   uvicorn main:app --reload
+  uvicorn main:app --reload
 ```
 
 5. Open API documentation:
 ```bash
-   http://127.0.0.1:8000/docs
+  http://127.0.0.1:8000/docs
 ```
 
 ## CRUD Endpoints Included
